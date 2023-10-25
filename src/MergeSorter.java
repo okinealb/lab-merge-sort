@@ -1,4 +1,6 @@
 import java.util.Comparator;
+import static java.lang.reflect.Array.newInstance;
+import java.io.PrintWriter;
 
 /**
  * A simple way to sort arrays using merge sort.
@@ -31,7 +33,37 @@ public class MergeSorter {
    * Preconditions: Each subarray is sorted accorting to comparator.
    */
   static <T> void merge(T[] vals, int lo, int mid, int hi, Comparator<? super T> comparator) {
-    // STUB
+    T[] newVals = java.util.Arrays.copyOfRange(vals, 0, vals.length);
+    PrintWriter pen = new PrintWriter(System.out, true);
+
+
+    int index = 0;
+
+    while ((lo < mid) && (mid < hi)) {
+      if (comparator.compare(vals[lo], vals[mid]) <= 0) {
+        newVals[index++] = vals[lo++];
+      } else {
+        newVals[index++] = vals[mid++];
+      }
+    }
+
+    if (lo < mid) {
+      for (int i = 0; i < mid - lo; i ++) {
+        newVals[index + i] = vals[lo + i];
+      }
+    } else {
+      for (int i = 0; i < hi - mid; i ++) {
+        newVals[index + i] = vals[mid + i];
+      }
+    }
+
+    //vals = newVals.clone();
+
+    for(int i = 0; i < vals.length; i++) {
+      vals[i] = newVals[i];
+      pen.printf("%d", vals[i]);
+    }
+    pen.println();
   } // merge
 
 } // class MergeSorter

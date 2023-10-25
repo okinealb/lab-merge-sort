@@ -21,6 +21,13 @@ public class MergeSortExperiments {
     PrintWriter pen = new PrintWriter(System.out, true);
     experiment01(pen);
     experiment02(pen);
+
+    Integer[] newArr = new Integer[] {2, 4, 1, 5};
+    MergeSorter.merge(newArr, 0, 2, 3, compareInts);
+    // for (int i = 0; i < 4; i++) {
+    //   pen.printf("%d", newArr[i]);
+    //   pen.println();
+    // }
   } // main
 
   // +-------------+-------------------------------------------------
